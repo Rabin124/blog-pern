@@ -2,11 +2,11 @@ const blogModel = (sequelize, DataTypes) => {
   const Blog = sequelize.define("Blog", {
     BlogTitle: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     BlogContent: {
       type: DataTypes.TEXT,
-      allowNull: false,
+      // allowNull: false,
     },})
   return Blog;
 

@@ -1,16 +1,29 @@
 const express = require("express");
+const { blogs } = require("./database/connection");
 const app = express();
 require("./database/connection")
+app.use(express.json())
 
 app.get("/blogs",function(req,res){
-  users.findAll()
+  // users.findAll()
+  // logic to fetch books from database
+  const datas = blogs.findAll()
   res.json({
-    // logic to fetch books from database
-    message : "Blog fetched successfully"
+    message : "Blog fetched successfully",
+    datas
   })
 })
 
-app.post("/blogs",function(req,res){
+app.post("/blogs",async function(req,res){
+  console.log(req.body)
+  const { blogTitle, blogContent } = req.body
+  await blogs.create({
+    blogTitle,
+    blogContent
+  })
+  console.log(blogName)
+  console.log(blogContent)
+
   res.json({
     message: "Blog added successfully"
   })

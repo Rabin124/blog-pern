@@ -2,6 +2,7 @@
 // const sequelize = require("sequelize");
 const { Sequelize, DataTypes} = require("sequelize");
 const blogModel = require("./models/blog.model")
+const userModel = require("./models/user.model")
 
 const sequelize = new Sequelize(process.env.CS)
 
@@ -18,6 +19,7 @@ sequelize.authenticate()
   db.Sequelize = Sequelize
   db.sequelize = sequelize
   db.blogs = blogModel(sequelize, DataTypes)
+  db.users = userModel(sequelize, DataTypes)
 
   // migrate code ho yo chai hai
   sequelize.sync({force: false, alter:false}).then(()=>{
