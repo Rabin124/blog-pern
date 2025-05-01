@@ -16,13 +16,13 @@ app.get("/blogs",function(req,res){
 
 app.post("/blogs",async function(req,res){
   console.log(req.body)
-  const { blogTitle, blogContent } = req.body
+  const { BlogTitle, BlogContent } = req.body
   await blogs.create({
-    blogTitle,
-    blogContent
+    BlogTitle : BlogTitle, 
+    BlogContent : BlogContent
   })
-  console.log(blogName)
-  console.log(blogContent)
+  console.log(BlogTitle)
+  console.log(BlogContent)
 
   res.json({
     message: "Blog added successfully"
