@@ -26,16 +26,39 @@ exports.addBlog = async function(req,res){
   })
 }
 
-exports.deleteBlog = function(req,res){
+exports.deleteBlog = async function(req,res){
+  const id = req.params.id
+ await blogs.destroy({
+    where : {
+      id : id
+    }
+  })
   res.json({
     message : "Blog deleted successfully"
   })
 }
 
 exports.editBlog =function(req,res){
+  try {
+    const id = req.params.id
+  const { BlogTitle, BlogContent } = req.body
+  blogs.update({
+    BlogTitle,
+    BlogContent
+  },{
+    where : {
+      id
+    }
+  })
   res.json({
     message : "Blog updated successfully"
   })
+  } catch (error) {
+    res.json({
+      message : "Blog not updated successfully",
+      error : error.message
+    })
+  }
 }
 
 
